@@ -3,9 +3,12 @@ from SimpleCV import *
 import matplotlib.pyplot as plt
 import time
 import pip 
-#import matplotlib.image as mpimg
 from sklearn import preprocessing
-#from scipy import misc
+from sklearn.cluster import KMeans
+import argparse
+import utils
+import cv2
+
 
 #from sklearn import *
 
@@ -15,16 +18,19 @@ plt.ion()
 time.sleep(2)
 
 img = c.getImage()
-#img.save("fotTTo.jpg")
+img.save("fotTTo.jpg")
 #img.show()
 
 #### OBTENER HISTOGRAMA ####
+#img=Image("fotTTo.jpg")
+
 gray = img.toGray()
-## gray = img.greyscale()
+gray.save("fotTTo_gray.jpg")
+#gray = img.greyscale()
 #gray.show()
 ## peaks = img.huePeaks()
 ## hist = img.hueHistogram()
-hist = gray.histogram()
+hist = gray.histogram(255)
 ## plt.bar()
 #plt.plot(hist)
 #plt.pause(-1)
@@ -40,20 +46,22 @@ hist = gray.histogram()
 #plt.pause(-1)
 
 #### SEGMENTAR ####
+## LETRAS
+#img1 = gray.binarize(105)
+#img1.save("fotTTo_img1.jpg")
+#imLetras = gray*img1
+#imLetras.save("1.jpg")
 
-#face = misc.face()
-#plt.imshow(face)
-#misc.imsave('face.png', face)
-#face = misc.imread('face.png')
-#gray.save("fotTTo_gray.jpg")
-#im_gray=mpimg.imread('fotTTo_gray.jpg')
+## FONDO
+#img2 = gray.binarize(110)
+#img3  = img2.invert()
+#img3.save("fotTTo_img2.jpg")
+#imFondo = gray*img3
+#imFondo.save("2.jpg")
 
-
-
-#binarizer = preprocessing.Binarizer(im_gray)
-#binarizer = preprocessing.Binarizer()
-#binarizer.transform(gray)
-
-img4 = gray.binarize(105)
-img4.save("fotTTo_img4.jpg")
+## CUADRICULAS
+#img4 = gray.binarize()
+#img4.save("fotTTo_img3.jpg")
+#imFondo = gray*img4
+#imFondo.save("3.jpg")
 
